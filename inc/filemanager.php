@@ -41,8 +41,16 @@ if (!defined("GLPI_MOD_DIR")) {
     define("GLPI_MOD_DIR", GLPI_ROOT . "/plugins/mod");
 }
 
+if (!defined("GLPI_PLUGIN_MOD_DOC_DIR")) {
+    define("GLPI_PLUGIN_MOD_DOC_DIR", GLPI_PLUGIN_DOC_DIR . "/mod");
+}
+
+if (!is_dir(GLPI_PLUGIN_MOD_DOC_DIR) && !mkdir($concurrentDirectory = GLPI_PLUGIN_MOD_DOC_DIR) && !is_dir($concurrentDirectory)) {
+    die('Plugin doc folder not created');
+}
+
 if (!defined("GLPI_MOD_BACKUP_DIR")) {
-    define("GLPI_MOD_BACKUP_DIR", GLPI_ROOT . "/plugins/mod/backups");
+    define("GLPI_MOD_BACKUP_DIR", GLPI_PLUGIN_MOD_DOC_DIR . "/backups");
 }
 
 if (!defined("GLPI_MOD_RESOURCE_DIR")) {
